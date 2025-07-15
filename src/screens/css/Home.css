@@ -1,0 +1,171 @@
+.home-container {
+  background-color: black;
+  color: white;
+  height: 100vh;
+  padding-top: 20px;
+  text-align: center;
+  position: relative; /* חשוב כדי ש-position absolute יפעל בתוך הקונטיינר */
+}
+
+.mainTitle {
+  font-size: 4rem;
+  font-weight: bold;
+  color: #d5e4e1;
+  text-align: center;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  letter-spacing: 1px;
+  animation: fadeIn 3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.adminButton {
+  top: 20px;
+  right: 20px;
+  background-color: #939b99;
+  color: white;
+  border: none;
+  padding: 10px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.adminButton:hover {
+  background-color: #575c5b;
+}
+
+.adminWrapper {
+  position: relative; /* חשוב! כדי שהפופאפ יתמקם ביחס לכפתור */
+  display: inline-block;
+}
+
+.adminPopUp {
+  position: absolute;
+  top: 50px; /* מתחת לכפתור */
+  left: 50%; /* ממורכז לפי הרוחב של .adminWrapper */
+  transform: translateX(-50%); /* מזיז את החלון חזרה שמאלה ב-50% מרוחבו */
+  background-color: #2d3436;
+  color: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  width: 280px;
+  z-index: 10;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.adminPopUp input,
+.adminPopUp textarea {
+  width: 100%;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: none;
+  font-size: 14px;
+  font-family: inherit;
+  box-sizing: border-box;
+  background-color: #fff;
+  color: #000;
+}
+
+.adminPopUp input::placeholder,
+.adminPopUp textarea::placeholder {
+  color: #888;
+}
+
+.adminPopUp input {
+  height: 30px; 
+}
+
+.adminPopUp textarea {
+  height: 80px; 
+  resize: vertical;
+}
+
+.UploadButton {
+  width: 100%;
+  padding: 10px;
+  background-color: #939b99;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+}
+.UploadButton:hover {
+  background-color: #575c5b;
+}
+.infoWrapper {
+  position: relative;  
+  margin: 0 auto;      
+  width: max-content;  
+  margin-bottom: 10px; 
+  text-align: center;  
+}
+.infoButton {
+  background-color: transparent;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 26px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+.infoText {
+  font-size: 18px;       
+  font-weight: 600;      
+  color: #d5e4e1;        
+  margin: 0;             
+  line-height: 1.4;      
+  text-align: center;    
+}
+.projectsList {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
+.projectCard {
+  background-color: #1f1f1f;
+  padding: 20px;
+  border-radius: 12px;
+  width: 80%;
+  max-width: 500px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  color: white;
+  text-align: left;
+}
+
+.projectCard h3 {
+  margin: 0 0 8px;
+}
+
+.projectCard a {
+  color: #7bdff2;
+  text-decoration: none;
+}
+
+.projectCard a:hover {
+  text-decoration: underline;
+}
+
+
