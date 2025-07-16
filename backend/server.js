@@ -16,12 +16,16 @@ app.use(express.json());
 
 app.post('/api/check-password', (req, res) => {
   const { password } = req.body;
+  console.log('Received password:', password);
+  console.log('Admin password env:', process.env.ADMIN_PASSWORD);
+
   if (password === process.env.ADMIN_PASSWORD) {
     return res.json({ success: true });
   } else {
     return res.status(401).json({ success: false, message: 'Incorrect password' });
   }
 });
+
 
 app.post('/api/projects', async (req, res) => {
   try {
