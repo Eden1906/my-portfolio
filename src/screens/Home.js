@@ -14,6 +14,8 @@ const Home = () => {
   const [projects, setProjects] = useState([]);
 
   const apiBaseUrl = process.env.REACT_APP_API_URL;
+  console.log('API Base URL:', apiBaseUrl);
+
 
   const handleAdminMenu = () => {
     setAdminMenu(!adminMenu);
