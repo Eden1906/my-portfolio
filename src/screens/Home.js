@@ -12,6 +12,7 @@ const Home = () => {
   const [gitHubLink, setGitHubLink] = useState('');
   const [infoMenu, setInfoMenu] = useState(false);
   const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(false)
 
   const apiBaseUrl = process.env.REACT_APP_API_URL;
   console.log('API Base URL:', apiBaseUrl);
@@ -86,6 +87,7 @@ const Home = () => {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
+        setLoading(true); 
         const res = await fetch(`${apiBaseUrl}/api/projects`);
         const data = await res.json();
         if (data.success) {
@@ -93,10 +95,13 @@ const Home = () => {
         }
       } catch (error) {
         console.error('Failed to fetch projects', error);
+      } finally {
+        setLoading(false);
       }
     };
     fetchProjects();
   }, [apiBaseUrl]);
+  
 
   return (
     <div className="home-container">
@@ -154,14 +159,23 @@ const Home = () => {
         )}
       </div>
       <div className='projectsList'>
-        {projects.map((proj, idx) => (
-          <div key={idx} className='projectsCard'>
-            <h3>{proj.name}</h3>
-            <p>{proj.summary}</p>
-            <a href={proj.gitHubLink} target='_blank' rel='noopener noreferrer'>GitHub</a>
+        {loading ? (
+          <div className="loadingWrapper">
+            <div className="spinner"></div>
+            <p>LOADING PROJECTS</p>
           </div>
-        ))}
+        ) : (
+          projects.map((proj, idx) => (
+            <div key={idx} className='projectsCard'>
+              <h3>{proj.name}</h3>
+              <p>{proj.summary}</p>
+              <a href={proj.gitHubLink} target='_blank' rel='noopener noreferrer'>GitHub</a>
+            </div>
+          ))
+        )}
       </div>
+
+
     </div>
   );
 };
