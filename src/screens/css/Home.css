@@ -4,7 +4,7 @@
   height: 100vh;
   padding-top: 20px;
   text-align: center;
-  position: relative; /* חשוב כדי ש-position absolute יפעל בתוך הקונטיינר */
+  position: relative; 
 }
 
 .mainTitle {
@@ -41,22 +41,32 @@
   cursor: pointer;
   font-weight: bold;
   transition: background-color 0.3s ease;
+  margin-bottom: 15px;
 }
 
 .adminButton:hover {
   background-color: #575c5b;
 }
 
-.adminWrapper {
-  position: relative; /* חשוב! כדי שהפופאפ יתמקם ביחס לכפתור */
-  display: inline-block;
+.buttonsWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  gap: 10px; 
+  position: relative; 
+  margin-top: 20px;
+}
+
+.adminWrapper, .aboutMeWrapper {
+  position: relative;
+  display: block;
 }
 
 .adminPopUp {
   position: absolute;
-  top: 50px; /* מתחת לכפתור */
-  left: 50%; /* ממורכז לפי הרוחב של .adminWrapper */
-  transform: translateX(-50%); /* מזיז את החלון חזרה שמאלה ב-50% מרוחבו */
+  top: 50px; 
+  left: 50%;
+  transform: translateX(-50%);
   background-color: #2d3436;
   color: white;
   padding: 20px;
@@ -112,6 +122,7 @@
 .UploadButton:hover {
   background-color: #575c5b;
 }
+
 .infoWrapper {
   position: relative;  
   margin: 0 auto;      
@@ -119,6 +130,7 @@
   margin-bottom: 10px; 
   text-align: center;  
 }
+
 .infoButton {
   background-color: transparent;
   color: white;
@@ -128,6 +140,7 @@
   margin-top: 5px;
   margin-bottom: 10px;
 }
+
 .infoText {
   font-size: 18px;       
   font-weight: 600;      
@@ -136,6 +149,7 @@
   line-height: 1.4;      
   text-align: center;    
 }
+
 .projectsList {
   margin-top: 40px;
   display: flex;
@@ -144,7 +158,7 @@
   align-items: center;
 }
 
-.projectCard {
+.projectsCard {
   background-color: #1f1f1f;
   padding: 20px;
   border-radius: 12px;
@@ -155,24 +169,26 @@
   text-align: left;
 }
 
-.projectCard h3 {
+.projectsCard h3 {
   margin: 0 0 8px;
 }
 
-.projectCard a {
+.projectsCard a {
   color: #7bdff2;
   text-decoration: none;
 }
 
-.projectCard a:hover {
+.projectsCard a:hover {
   text-decoration: underline;
 }
+
 .loadingText {
   font-size: 18px;
   color: #555;
   text-align: center;
   margin-top: 10px;
 }
+
 .spinner {
   border: 6px solid #f3f3f3; 
   border-top: 6px solid #454a4e; 
@@ -182,10 +198,12 @@
   animation: spin 1s linear infinite;
   margin: 20px auto;
 }
+
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
 .loadingWrapper {
   display: flex;
   flex-direction: column;
@@ -193,7 +211,3 @@
   margin-top: 30px;
   color: #555;
 }
-
-
-
-

@@ -12,11 +12,11 @@ const Home = () => {
   const [gitHubLink, setGitHubLink] = useState('');
   const [infoMenu, setInfoMenu] = useState(false);
   const [projects, setProjects] = useState([]);
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
+  const [aboutMeMenu, setAboutMeMenu] = useState(false);
 
   const apiBaseUrl = process.env.REACT_APP_API_URL;
   console.log('API Base URL:', apiBaseUrl);
-
 
   const handleAdminMenu = () => {
     setAdminMenu(!adminMenu);
@@ -81,13 +81,16 @@ const Home = () => {
 
   const handleInfo = () => {
     setInfoMenu(!infoMenu);
-    console.log(infoMenu);
+  };
+
+  const handleAboutMe = () => {
+    setAboutMeMenu(!aboutMeMenu);
   };
 
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        setLoading(true); 
+        setLoading(true);
         const res = await fetch(`${apiBaseUrl}/api/projects`);
         const data = await res.json();
         if (data.success) {
@@ -101,11 +104,11 @@ const Home = () => {
     };
     fetchProjects();
   }, [apiBaseUrl]);
-  
 
   return (
     <div className="home-container">
       <h1 className="mainTitle">My Portfolio – Eden Levy</h1>
+      
       <div className='infoWrapper'>
         <button className="infoButton" onClick={handleInfo}>
           <IoMdInformationCircleOutline />
@@ -116,48 +119,64 @@ const Home = () => {
           </div>
         )}
       </div>
-      <div className="adminWrapper">
-        <button className="adminButton" onClick={handleAdminMenu}>Admin</button>
-        {adminMenu && (
-          <div className="adminPopUp">
-            {!authSuccess ? (
-              <>
-                <input
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  placeholder="Password"
-                  style={{ width: '100%', padding: '8px', marginBottom: '10px', borderRadius: '4px', border: 'none' }}
-                />
-                <button onClick={handleLogin} style={{ width: '100%', padding: '8px', cursor: 'pointer' }}>
-                  Login
-                </button>
-                {error && <p style={{ color: 'red', marginTop: '8px' }}>{error}</p>}
-              </>
-            ) : (
-              <>
-                <input
-                  value={projectName}
-                  onChange={(e) => setProjectName(e.target.value)}
-                  placeholder='Project Name'
-                />
-                <textarea
-                  className="SummmaryInput"
-                  value={projectSummary}
-                  onChange={(e) => setProjectSummary(e.target.value)}
-                  placeholder='Project Summary'
-                />
-                <input
-                  value={gitHubLink}
-                  onChange={(e) => setGitHubLink(e.target.value)}
-                  placeholder='Git Hub Link'
-                />
-                <button className='UploadButton' onClick={handleUpload}>Upload</button>
-              </>
-            )}
-          </div>
-        )}
+
+      <div className="buttonsWrapper">
+        <div className="adminWrapper">
+          <button className="adminButton" onClick={handleAdminMenu}>Admin</button>
+          {adminMenu && (
+            <div className="adminPopUp">
+              {!authSuccess ? (
+                <>
+                  <input
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="Password"
+                    style={{ width: '100%', padding: '8px', marginBottom: '10px', borderRadius: '4px', border: 'none' }}
+                  />
+                  <button onClick={handleLogin} style={{ width: '100%', padding: '8px', cursor: 'pointer' }}>
+                    Login
+                  </button>
+                  {error && <p style={{ color: 'red', marginTop: '8px' }}>{error}</p>}
+                </>
+              ) : (
+                <>
+                  <input
+                    value={projectName}
+                    onChange={(e) => setProjectName(e.target.value)}
+                    placeholder='Project Name'
+                  />
+                  <textarea
+                    className="SummmaryInput"
+                    value={projectSummary}
+                    onChange={(e) => setProjectSummary(e.target.value)}
+                    placeholder='Project Summary'
+                  />
+                  <input
+                    value={gitHubLink}
+                    onChange={(e) => setGitHubLink(e.target.value)}
+                    placeholder='Git Hub Link'
+                  />
+                  <button className='UploadButton' onClick={handleUpload}>Upload</button>
+                </>
+              )}
+            </div>
+          )}
+        </div>
+
+        <div className="aboutMeWrapper">
+          <button className='adminButton' onClick={handleAboutMe}>ABOUT ME</button>
+          {aboutMeMenu && (
+            <div className="adminPopUp">
+              <p className='infoText'>
+              Hi, I'm Eden Levy, a full-stack developer with broad knowledge across various fields,
+               who enjoys creating new projects and growing professionally every day.
+              </p>
+            </div>
+          )}
+        </div>
       </div>
+
       <div className='projectsList'>
         {loading ? (
           <div className="loadingWrapper">
@@ -174,7 +193,6 @@ const Home = () => {
           ))
         )}
       </div>
-
 
     </div>
   );
