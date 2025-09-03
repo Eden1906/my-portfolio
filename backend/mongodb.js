@@ -1,10 +1,12 @@
-import mongoose from "mongoose";
-import dotenv from "dotenv";
+// mongodb.js
+import mongoose from 'mongoose';
 
-dotenv.config();
+let cached = null;
 
-mongoose.connect(process.env.MONGODB_URI)
-  .then(() => console.log("✅ MongoDB is connected"))
-  .catch(err => console.error("❌ Failed to connect to MongoDB:", err));
-
-export default mongoose;
+export async function connectDB() {
+  if (cached) return cached;
+  const uri = process.env.MONGODB_URI;
+  if (!uri) throw new Error('MONGODB_URI is undefined'); // נראה בלוגים אם חסר
+  cached = await mongoose.connect(uri, { dbName: 'portfolio' });
+  return cached;
+}
