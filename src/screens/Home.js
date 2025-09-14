@@ -181,7 +181,7 @@ const Home = () => {
         {loading ? (
           <div className="loadingWrapper">
             <div className="spinner"></div>
-            <p>LOADING PROJECTS - THIS MAY TAKE A FEW MINUTES"</p>
+            <p>LOADING PROJECTS - THIS MAY TAKE A FEW MINUTES</p>
           </div>
         ) : (
           projects.map((proj, idx) => (
