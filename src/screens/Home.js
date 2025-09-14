@@ -107,7 +107,7 @@ const Home = () => {
 
   return (
     <div className="home-container">
-      <h1 className="mainTitle">My Portfolio – Eden Levy</h1>
+      <h1 className="mainTitle">Portfolio – Eden Levy</h1>
       
       <div className='infoWrapper'>
         <button className="infoButton" onClick={handleInfo}>
